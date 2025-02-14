@@ -1,0 +1,69 @@
+/(c) A+ Computer Science
+//www.apluscompsci.com
+//Name -
+import java.util.Queue;
+import java.util.Stack;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.LinkedList;
+public class PalinList
+{
+private Queue<String> queue;
+private Stack<String> stack;
+public PalinList()
+{
+queue=new LinkedList<>();
+stack = new Stack<>();
+}
+public PalinList(String list)
+{
+queue=new LinkedList<>();
+stack = new Stack<>();
+setList(list);
+}
+public void setList(String list)
+{
+String[] elements = list.split(", ");
+for(String element : elements) {
+queue.add(element);
+stack.push(element);
+}
+}
+public boolean isPalin()
+{
+while(!queue.isEmpty()) {
+String fromQueue = queue.poll();
+String fromStack = stack.pop();
+if(!fromQueue.equals(fromStack)) {
+return false;
+}
+}
+return true;
+}
+//write a toString method
+public String toString() {
+return stack.toString();
+}
+}
+public class PalinListRunner
+{
+public static void main(String[] args) {
+String[] testCases={
+"one two three two one",
+"1 2 3 4 5 one two three four five",
+"a b c d e f g x y z g f h",
+"racecar is racecar",
+"1 2 3 a b c c b a 3 2 1",
+"chicken is a chicken"
+};
+for (String testCase : testCases){
+PalinList palinList = new PalinList(testCase);
+if (palinList.isPalin()){
+System.out.println(palinList + "is a palinlist.");
+}
+else {
+;
+}
+}
+}
+}
